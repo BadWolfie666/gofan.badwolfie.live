@@ -1,23 +1,561 @@
-@'
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GoFan • BadWolfie</title>
-  <style>
-    body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:0;display:grid;place-items:center;min-height:100dvh;background:#111;color:#eee}
-    .card{background:#1b1b1b;border-radius:16px;padding:32px;max-width:720px;box-shadow:0 10px 30px rgba(0,0,0,.4);text-align:center}
-    a{color:#7cc7ff}
-    .brand{opacity:.8;font-size:.9rem;margin-top:.5rem}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sign In - GoFan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #4a4a4a;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header img {
+            max-width: 280px;
+            height: auto;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .login-container {
+            background: #e8e8e8;
+            border-radius: 8px;
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .login-container h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            font-size: 15px;
+            background-color: #ffffff;
+            color: #333;
+            transition: all 0.2s ease;
+        }
+
+        .login-container input::placeholder {
+            color: #999;
+        }
+
+        .login-container input:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+        }
+
+        .login-container input:hover:not(:focus) {
+            border-color: #a0a0a0;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 13px;
+            margin-top: 6px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .login-container input.error {
+            border-color: #dc3545;
+            background-color: #fff5f5;
+        }
+
+        .forgot-password-wrapper {
+            text-align: center;
+            margin: 16px 0 24px;
+        }
+
+        .login-container a.forgot-password {
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-container a.forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 14px;
+            background: #cccccc;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            cursor: not-allowed;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .login-container button:enabled {
+            background: #007bff;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .login-container button:enabled:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        .login-container button:enabled:active {
+            transform: translateY(0);
+        }
+
+        .sign-up {
+            text-align: center;
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .sign-up a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .sign-up a:hover {
+            text-decoration: underline;
+        }
+
+        .terms {
+            font-size: 13px;
+            color: #666;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .terms a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-brand {
+            text-align: center;
+            padding: 24px;
+            color: #999;
+            font-size: 13px;
+            margin-top: 20px;
+        }
+
+        .footer-brand img {
+            max-width: 140px;
+            height: auto;
+            margin-top: 12px;
+            opacity: 0.8;
+        }
+
+        .info-section {
+            background: #4a4a4a;
+            color: #ffffff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .info-section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .info-section p {
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto 20px;
+        }
+
+        .info-section p a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .info-section p a:hover {
+            text-decoration: underline;
+        }
+
+        .info-section .tagline {
+            font-size: 20px;
+            font-style: italic;
+            margin: 40px auto 48px;
+            opacity: 0.9;
+        }
+
+        .brand-showcase {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+        }
+
+        .brand-item {
+            text-align: center;
+        }
+
+        .brand-item img {
+            max-width: 280px;
+            height: auto;
+            margin-bottom: 16px;
+        }
+
+        .brand-item p {
+            font-size: 15px;
+            color: #ccc;
+            font-style: italic;
+        }
+
+        .trouble-section {
+            background: #3a3a3a;
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .trouble-section h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 32px;
+        }
+
+        .powered-by {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .powered-by img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .powered-by-text {
+            text-align: left;
+        }
+
+        .powered-by-text h4 {
+            font-size: 14px;
+            font-weight: 400;
+            color: #999;
+            margin-bottom: 4px;
+        }
+
+        .powered-by-text p {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .cloudflare-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .cloudflare-section img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .cloudflare-section p {
+            max-width: 500px;
+            font-size: 16px;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .cloudflare-info {
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+        }
+
+        .cloudflare-info a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .copyright {
+            font-size: 11px;
+            color: #666;
+            margin-top: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            .brand-showcase {
+                gap: 40px;
+            }
+
+            .brand-item img {
+                max-width: 200px;
+            }
+
+            .cloudflare-section {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .login-container {
+                padding: 36px 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header img {
+                max-width: 220px;
+            }
+
+            .login-container h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="card">
-    <h1>GoFan @ BadWolfie.live</h1>
-    <p>Fresh subdomain coming online. Replace this with your real GoFan content.</p>
-    <p class="brand">Powered by BadWolfNetworks</p>
-  </div>
+    <div class="header">
+        <img src="gofan-logo.png" alt="GoFan Logo" onerror="this.style.display='none'">
+    </div>
+
+    <div class="main-content">
+        <div class="login-container">
+            <h1>Sign In</h1>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Email" required autocomplete="email">
+                    <div id="email-error-message" class="error-message">
+                        Please enter a valid email address
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Password" required autocomplete="current-password">
+                    <div id="password-error-message" class="error-message">
+                        Password must be at least 6 characters
+                    </div>
+                </div>
+
+                <div id="login-error-message" class="error-message">
+                    We don't recognize your email and password combination. Please try again or sign up below.
+                </div>
+
+                <div class="forgot-password-wrapper">
+                    <a href="https://gofan.co/forgot-password" class="forgot-password" target="_blank">Forgot password</a>
+                </div>
+
+                <button type="submit" id="signInButton" disabled>Sign in</button>
+            </form>
+
+            <div class="sign-up">
+                <p>Don't have a GoFan account? <a href="https://gofan.co/sign-up" target="_blank">Sign up</a></p>
+            </div>
+
+            <p class="terms">
+                By signing in, you agree to our <a href="https://gofan.co/terms-of-use" target="_blank">Terms of Use</a> and <a href="https://gofan.co/privacy-policy" target="_blank">Privacy Policy</a>.
+            </p>
+
+            <div class="footer-brand">
+                <p>GoFan is part of the PlayOn family of brands</p>
+                <img src="playon-logo.png" alt="PlayOn Logo" onerror="this.style.display='none'">
+            </div>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h2>Important!</h2>
+        <p>
+            Login not working? Only accounts approved by our team can access our content. If you already have a GoFan account or want to transfer it, contact support for assistance.
+        </p>
+        <p>
+            To get started, check your email to see if your GoFan account has been approved. If you're new to our platform and would like to learn more about our content and pricing, contact us at <a href="mailto:support@badwolfie.live">support@badwolfie.live</a>.
+        </p>
+
+        <p class="tagline">Live Streaming without limits.</p>
+
+        <div class="brand-showcase">
+            <div class="brand-item">
+                <img src="playon-logo.png" alt="PlayOn" onerror="this.style.display='none'">
+                <p>Part of PlayOn family of brands</p>
+            </div>
+            <div class="brand-item">
+                <img src="gofan-logo.png" alt="GoFan" onerror="this.style.display='none'">
+                <p>- Secure, Private Livestreaming.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="trouble-section">
+        <h3>Having trouble?</h3>
+
+        <div class="powered-by">
+            <img src="wolf-logo.png" alt="BadWolfie Networks" onerror="this.style.display='none'">
+            <div class="powered-by-text">
+                <h4>Powered by</h4>
+                <p>BadWolfNetworks</p>
+            </div>
+        </div>
+
+        <p style="max-width: 600px; margin: 0 auto 40px; font-size: 14px; color: #ccc;">
+            Private web hosting for small enterprises since 2023.
+        </p>
+
+        <div class="cloudflare-section">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Cpath d='M40 20 L60 30 L40 40 Z' fill='%23ffffff'/%3E%3Cpath d='M60 30 L70 20 L70 40 Z' fill='%23ffffff'/%3E%3Ctext x='80' y='38' font-family='Arial, sans-serif' font-size='16' font-weight='bold' fill='%23ffffff'%3ECLOUDFLARE%3C/text%3E%3C/svg%3E" alt="Cloudflare Logo">
+            <p>Protected by Cloudflare to ensure a secure and reliable experience for all.</p>
+        </div>
+
+        <div class="cloudflare-info">
+            Cloudflare Ray ID: 902cd0178fd56b70 • Performance & security by <a href="https://www.cloudflare.com" target="_blank">Cloudflare Enterprise</a>
+        </div>
+
+        <div class="copyright">
+            Copyright ©2025. BadWolfie Enterprises LLC. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const signInButton = document.getElementById('signInButton');
+        const emailErrorMessage = document.getElementById('email-error-message');
+        const passwordErrorMessage = document.getElementById('password-error-message');
+        const loginErrorMessage = document.getElementById('login-error-message');
+        const loginForm = document.getElementById('loginForm');
+
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function validatePassword(password) {
+            return password.length >= 6;
+        }
+
+        function updateValidation() {
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            const isEmailValid = validateEmail(email);
+            const isPasswordValid = validatePassword(password);
+
+            // Update email validation UI
+            if (email && !isEmailValid) {
+                emailInput.classList.add('error');
+                emailErrorMessage.classList.add('show');
+            } else {
+                emailInput.classList.remove('error');
+                emailErrorMessage.classList.remove('show');
+            }
+
+            // Update password validation UI
+            if (password && !isPasswordValid) {
+                passwordInput.classList.add('error');
+                passwordErrorMessage.classList.add('show');
+            } else {
+                passwordInput.classList.remove('error');
+                passwordErrorMessage.classList.remove('show');
+            }
+
+            // Enable button only when both are valid
+            signInButton.disabled = !(isEmailValid && isPasswordValid);
+        }
+
+        emailInput.addEventListener('input', () => {
+            updateValidation();
+            loginErrorMessage.classList.remove('show');
+        });
+
+        passwordInput.addEventListener('input', () => {
+            updateValidation();
+            loginErrorMessage.classList.remove('show');
+        });
+
+        emailInput.addEventListener('blur', updateValidation);
+        passwordInput.addEventListener('blur', updateValidation);
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            // Simulate login attempt
+            signInButton.disabled = true;
+            signInButton.textContent = 'Signing in...';
+
+            setTimeout(() => {
+                // Simulating a failed login
+                loginErrorMessage.classList.add('show');
+                emailInput.classList.add('error');
+                passwordInput.classList.add('error');
+                signInButton.disabled = false;
+                signInButton.textContent = 'Sign in';
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
-'@ | Set-Content -Encoding UTF8 index.html
