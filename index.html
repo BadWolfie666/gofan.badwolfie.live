@@ -15,7 +15,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: Arial, sans-serif;
             background: #f5f5f5;
             min-height: 100vh;
             display: flex;
@@ -42,44 +42,34 @@
             justify-content: center;
             align-items: center;
             padding: 60px 20px;
+            background-color: #f9f9f9;
         }
 
-        /* Login Container - Exact match to original */
         .login-container {
-            background: #e8e8e8;
+            background-color: #eaeaea; /* Slightly darker white-gray color */
+            border: 1px solid #ddd;
+            padding: 20px;
             border-radius: 8px;
-            padding: 50px 45px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .login-container h1 {
-            font-size: 32px;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        /* Form Styling */
-        .form-group {
-            margin-bottom: 14px;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
 
         .login-container input {
-            width: 100%;
-            padding: 13px 15px;
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 15px;
-            background-color: #ffffff;
-            color: #333;
-            transition: border-color 0.2s ease;
-        }
-
-        .login-container input::placeholder {
-            color: #999;
+            font-size: 14px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
         }
 
         .login-container input:focus {
@@ -87,123 +77,79 @@
             outline: none;
         }
 
-        .login-container input:hover:not(:focus) {
-            border-color: #999;
-        }
-
-        /* Error Messages */
-        .error-message {
-            color: #dc3545;
-            font-size: 13px;
-            margin-top: 5px;
-            display: none;
-            font-weight: 500;
-        }
-
-        .error-message.show {
-            display: block;
-        }
-
-        .login-container input.error {
-            border-color: #dc3545;
-        }
-
-        /* Forgot Password Link */
-        .forgot-password-wrapper {
-            text-align: center;
-            margin: 18px 0 24px;
-        }
-
-        .login-container a.forgot-password {
+        .login-container a {
             font-size: 14px;
             color: #007bff;
             text-decoration: none;
-            font-weight: 500;
         }
 
-        .login-container a.forgot-password:hover {
+        .login-container a:hover {
             text-decoration: underline;
         }
 
-        /* Sign In Button */
         .login-container button {
             width: 100%;
-            padding: 13px;
-            background: #cccccc;
+            padding: 10px;
+            margin-top: 10px; /* Adjusted space */
+            background-color: #ccc;
             border: none;
             border-radius: 4px;
             font-size: 16px;
-            font-weight: 600;
-            color: #888;
-            cursor: not-allowed;
-            transition: all 0.2s ease;
-            margin-bottom: 20px;
+            cursor: not-allowed; /* Default cursor */
         }
 
         .login-container button:enabled {
-            background: #007bff;
-            color: #ffffff;
-            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer; /* Pointer cursor when enabled */
         }
 
-        .login-container button:enabled:hover {
-            background: #0056b3;
+        .login-container a.forgot-password {
+            display: block;
+            margin-top: 12px; /* Added more space */
+            margin-bottom: 8px; /* Centered link */
         }
 
-        /* Sign Up Section */
-        .sign-up {
-            text-align: center;
-            font-size: 15px;
-            color: #000;
-            margin-bottom: 18px;
+        .login-container .sign-up {
+            margin-top: 15px;
+            font-size: 14px;
         }
 
-        .sign-up a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: 600;
+        .login-container .sign-up a {
+            font-size: 14px;
+            font-weight: bold;
         }
 
-        .sign-up a:hover {
-            text-decoration: underline;
-        }
-
-        /* Terms */
         .terms {
-            font-size: 13px;
-            color: #666;
-            text-align: center;
-            line-height: 1.5;
-            margin-bottom: 24px;
+            font-size: 12px;
+            margin-top: 20px;
         }
 
         .terms a {
+            font-size: 12px;
+            font-weight: normal;
             color: #007bff;
-            text-decoration: none;
         }
 
-        .terms a:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer Brand */
-        .footer-brand {
-            text-align: center;
-            padding: 20px 0 0;
-            margin-top: 20px;
-            border-top: 1px solid #d0d0d0;
+        .footer {
+            font-size: 12px;
+            margin-top: 30px;
             color: #888;
-            font-size: 13px;
         }
 
-        .footer-brand img {
-            max-width: 120px;
-            height: auto;
+        .footer img {
+            max-width: 100px;
             margin-top: 10px;
-            opacity: 0.9;
         }
 
-        /* Info Section - Dark Gray Background */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+            text-align: left;
+        }
+
+        /* Info Section */
         .info-section {
             background: #4a4a4a;
             color: #ffffff;
@@ -267,7 +213,7 @@
             font-style: italic;
         }
 
-        /* Trouble Section - Darker Background */
+        /* Trouble Section */
         .trouble-section {
             background: #3a3a3a;
             color: #ffffff;
@@ -405,14 +351,6 @@
                 max-width: 240px;
             }
 
-            .login-container {
-                padding: 40px 30px;
-            }
-
-            .login-container h1 {
-                font-size: 28px;
-            }
-
             .main-content {
                 padding: 40px 20px;
             }
@@ -422,51 +360,32 @@
 <body>
     <!-- Header with GoFan Logo -->
     <div class="header">
-        <img src="assets/images/gofan-logo-white.png" alt="GoFan Logo" onerror="this.style.display='none'">
+        <img src="assets/images/gofan-logo-white.png" alt="GoFan Logo">
     </div>
 
     <!-- Main Login Section -->
     <div class="main-content">
         <div class="login-container">
             <h1>Sign In</h1>
-            
             <form id="loginForm">
-                <div class="form-group">
-                    <input type="email" id="email" placeholder="Email" required autocomplete="email">
-                    <div id="email-error-message" class="error-message">
-                        Please enter a valid email address
-                    </div>
+                <input type="email" id="email" placeholder="Email" required>
+                <div id="email-error-message" class="error-message" style="display: none;">
+                    Enter a valid email address.
                 </div>
-
-                <div class="form-group">
-                    <input type="password" id="password" placeholder="Password" required autocomplete="current-password">
-                    <div id="password-error-message" class="error-message">
-                        Password must be at least 6 characters
-                    </div>
+                <input type="password" id="password" placeholder="Password" required>
+                <div id="error-message" class="error-message" style="display: none;">
+                    We do not recognize your email address and password combination. Please try again or Sign Up below.
                 </div>
-
-                <div id="login-error-message" class="error-message">
-                    We don't recognize your email and password combination. Please try again or sign up below.
-                </div>
-
-                <div class="forgot-password-wrapper">
-                    <a href="https://gofan.co/forgot-password" class="forgot-password" target="_blank">Forgot password</a>
-                </div>
-
-                <button type="submit" id="signInButton" disabled>Sign in</button>
+                <a href="https://gofan.co/forgot-password" class="forgot-password" target="_blank">Forgot password</a>
+                <button type="button" id="signInButton" disabled onclick="handleSignIn()">Sign in</button>
             </form>
-
             <div class="sign-up">
                 <p>Don't have a GoFan account? <a href="https://gofan.co/sign-up" target="_blank">Sign up</a></p>
             </div>
-
-            <p class="terms">
-                By signing in, you agree to our <a href="https://gofan.co/terms-of-use" target="_blank">Terms of Use</a> and <a href="https://gofan.co/privacy-policy" target="_blank">Privacy Policy</a>.
-            </p>
-
-            <div class="footer-brand">
+            <p class="terms">By signing in, you agree to our <a href="https://gofan.co/terms-of-use" target="_blank">Terms of Use</a> and <a href="https://gofan.co/privacy-policy" target="_blank">Privacy Policy</a>.</p>
+            <div class="footer">
                 <p>GoFan is part of the PlayOn family of brands</p>
-                <img src="assets/images/playon-logo.png" alt="PlayOn Logo" onerror="this.style.display='none'">
+                <img src="assets/images/playon-logo.png" alt="PlayOn Logo">
             </div>
         </div>
     </div>
@@ -485,11 +404,11 @@
 
         <div class="brand-showcase">
             <div class="brand-item">
-                <img src="assets/images/playon-logo-large.png" alt="PlayOn" onerror="this.style.display='none'">
+                <img src="assets/images/playon-logo-large.png" alt="PlayOn">
                 <p>Part of PlayOn family of brands</p>
             </div>
             <div class="brand-item">
-                <img src="assets/images/gofan-logo-white-large.png" alt="GoFan" onerror="this.style.display='none'">
+                <img src="assets/images/gofan-logo-white-large.png" alt="GoFan">
                 <p>- Secure, Private Livestreaming.</p>
             </div>
         </div>
@@ -500,7 +419,7 @@
         <h3>Having trouble?</h3>
 
         <div class="powered-by">
-            <img src="assets/images/badwolf-icon.png" alt="BadWolfie Networks" onerror="this.style.display='none'">
+            <img src="assets/images/badwolf-icon.png" alt="BadWolfie Networks">
             <div class="powered-by-text">
                 <h4>Powered by</h4>
                 <p>BadWolfNetworks</p>
@@ -512,7 +431,7 @@
         </p>
 
         <div class="cloudflare-section">
-            <img src="assets/images/cloudflare-logo.png" alt="Cloudflare Logo" onerror="this.style.display='none'">
+            <img src="assets/images/cloudflare-logo.svg" alt="Cloudflare Logo">
             <p>Protected by Cloudflare to ensure a secure and reliable experience for all.</p>
         </div>
 
@@ -525,86 +444,37 @@
         </div>
     </div>
 
-    <!-- JavaScript for Form Validation -->
     <script>
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
         const signInButton = document.getElementById('signInButton');
         const emailErrorMessage = document.getElementById('email-error-message');
-        const passwordErrorMessage = document.getElementById('password-error-message');
-        const loginErrorMessage = document.getElementById('login-error-message');
-        const loginForm = document.getElementById('loginForm');
 
-        function validateEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-        function validatePassword(password) {
-            return password.length >= 6;
-        }
-
-        function updateValidation() {
+        function validateInputs() {
             const email = emailInput.value.trim();
             const password = passwordInput.value.trim();
 
-            const isEmailValid = validateEmail(email);
-            const isPasswordValid = validatePassword(password);
+            // Simple email validation
+            const isValidEmail = email.includes('@') && email.includes('.');
+            const isValidPassword = password.length >= 6;
 
-            // Update email validation UI
-            if (email && !isEmailValid) {
-                emailInput.classList.add('error');
-                emailErrorMessage.classList.add('show');
-            } else {
-                emailInput.classList.remove('error');
-                emailErrorMessage.classList.remove('show');
-            }
+            // Show/hide email error message
+            emailErrorMessage.style.display = isValidEmail ? 'none' : 'block';
 
-            // Update password validation UI
-            if (password && !isPasswordValid) {
-                passwordInput.classList.add('error');
-                passwordErrorMessage.classList.add('show');
-            } else {
-                passwordInput.classList.remove('error');
-                passwordErrorMessage.classList.remove('show');
-            }
-
-            // Enable button only when both are valid
-            signInButton.disabled = !(isEmailValid && isPasswordValid);
+            // Enable sign-in button only when both inputs are valid
+            signInButton.disabled = !(isValidEmail && isValidPassword);
         }
 
-        emailInput.addEventListener('input', () => {
-            updateValidation();
-            loginErrorMessage.classList.remove('show');
-        });
+        emailInput.addEventListener('input', validateInputs);
+        passwordInput.addEventListener('input', validateInputs);
 
-        passwordInput.addEventListener('input', () => {
-            updateValidation();
-            loginErrorMessage.classList.remove('show');
-        });
+        function handleSignIn() {
+            const email = emailInput.value;
+            const password = passwordInput.value;
 
-        emailInput.addEventListener('blur', updateValidation);
-        passwordInput.addEventListener('blur', updateValidation);
-
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = emailInput.value.trim();
-            const password = passwordInput.value.trim();
-
-            // Simulate login attempt
-            signInButton.disabled = true;
-            signInButton.textContent = 'Signing in...';
-
-            setTimeout(() => {
-                // Simulating a failed login for demo
-                loginErrorMessage.classList.add('show');
-                emailInput.classList.add('error');
-                passwordInput.classList.add('error');
-                signInButton.disabled = false;
-                signInButton.textContent = 'Sign in';
-            }, 1000);
-        });
+            // Simulating a failed login
+            document.getElementById('error-message').style.display = 'block';
+        }
     </script>
 </body>
 </html>
