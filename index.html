@@ -225,6 +225,70 @@
             font-size: 26px;
             font-weight: 700;
             margin-bottom: 40px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            transition: color 0.3s ease;
+            user-select: none;
+        }
+
+        .trouble-section h3:hover {
+            color: #60d0ff;
+        }
+
+        .trouble-section h3::after {
+            content: '▼';
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .trouble-section h3.collapsed::after {
+            transform: rotate(-90deg);
+        }
+
+        .trouble-content {
+            max-height: 5000px;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.5s ease;
+            opacity: 1;
+        }
+
+        .trouble-content.hidden {
+            max-height: 0;
+            opacity: 0;
+        }
+
+        .trouble-instructions {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            padding: 30px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid #4a4a4a;
+        }
+
+        .trouble-instructions p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #ddd;
+            margin: 0;
+        }
+
+        .trouble-media {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .trouble-media img,
+        .trouble-media video {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid #4a4a4a;
         }
 
         /* Powered By BadWolf - Modern Professional Design */
@@ -448,7 +512,22 @@
 
     <!-- Trouble/Support Section -->
     <div class="trouble-section">
-        <h3>Having trouble?</h3>
+        <h3 id="troubleToggle" onclick="toggleTrouble()">Having trouble?</h3>
+
+        <div class="trouble-content" id="troubleContent">
+            <!-- Instructions -->
+            <div class="trouble-instructions">
+                <p>
+                    Open the email we sent you and click on the link. Use the credentials provided to log in—don't worry, you can reset your password or update your email at any time. Once logged in, you'll receive your ticket to the BadWolf Community. Click "Accept Ticket" and wait for the page to reload. Once the page refreshes, you're all set and ready to join!
+                </p>
+            </div>
+
+            <!-- Media (Image and GIF) -->
+            <div class="trouble-media">
+                <img src="assets/images/join-screen.png" alt="Join Screen Example">
+                <img src="assets/gifs/how-to-join.gif" alt="How to Join Tutorial">
+            </div>
+        </div>
 
         <div class="powered-by-container">
             <div class="powered-by">
@@ -509,6 +588,15 @@
 
             // Simulating a failed login
             document.getElementById('error-message').style.display = 'block';
+        }
+
+        // Toggle function for "Having trouble?" section
+        function toggleTrouble() {
+            const content = document.getElementById('troubleContent');
+            const toggle = document.getElementById('troubleToggle');
+            
+            content.classList.toggle('hidden');
+            toggle.classList.toggle('collapsed');
         }
     </script>
 </body>
