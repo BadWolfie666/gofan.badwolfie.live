@@ -227,47 +227,70 @@
             margin-bottom: 40px;
         }
 
-        /* Powered By BadWolf */
+        /* Powered By BadWolf - Modern Professional Design */
+        .powered-by-container {
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
         .powered-by {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 24px;
-            margin-bottom: 20px;
-            padding: 30px 40px;
-            border: 2px solid #555;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.03);
+            gap: 30px;
+            padding: 40px 50px;
+            border: 1px solid #4a4a4a;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .powered-by:hover {
+            border-color: #5a5a5a;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
         }
 
         .powered-by img {
-            width: 90px;
-            height: 90px;
+            width: 100px;
+            height: 100px;
             object-fit: contain;
+            flex-shrink: 0;
         }
 
-        .powered-by-text {
+        .powered-by-content {
+            flex: 1;
             text-align: left;
         }
 
+        .powered-by-text {
+            margin-bottom: 12px;
+        }
+
         .powered-by-text h4 {
-            font-size: 13px;
-            font-weight: 400;
+            font-size: 12px;
+            font-weight: 500;
             color: #999;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .powered-by-text p {
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 26px;
+            font-weight: 700;
             color: #fff;
             margin: 0;
+            line-height: 1.2;
         }
 
         .hosting-info {
-            max-width: 600px;
-            margin: 10px auto 50px;
             font-size: 14px;
             color: #aaa;
+            line-height: 1.6;
+            margin: 0;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* Cloudflare Section */
@@ -338,7 +361,12 @@
 
             .powered-by {
                 flex-direction: column;
-                gap: 15px;
+                padding: 30px;
+                text-align: center;
+            }
+
+            .powered-by-content {
+                text-align: center;
             }
 
             .powered-by-text {
@@ -422,17 +450,20 @@
     <div class="trouble-section">
         <h3>Having trouble?</h3>
 
-        <div class="powered-by">
-            <img src="assets/images/badwolf-icon.png" alt="BadWolfie Networks">
-            <div class="powered-by-text">
-                <h4>Powered by</h4>
-                <p>BadWolfNetworks</p>
+        <div class="powered-by-container">
+            <div class="powered-by">
+                <img src="assets/images/badwolf-icon.png" alt="BadWolfie Networks">
+                <div class="powered-by-content">
+                    <div class="powered-by-text">
+                        <h4>Powered by</h4>
+                        <p>BadWolfNetworks</p>
+                    </div>
+                    <p class="hosting-info">
+                        Private web hosting for small enterprises since 2023.
+                    </p>
+                </div>
             </div>
         </div>
-
-        <p class="hosting-info">
-            Private web hosting for small enterprises since 2023.
-        </p>
 
         <div class="cloudflare-section">
             <img src="assets/images/cloudflare-logo.svg" alt="Cloudflare Logo">
