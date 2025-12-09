@@ -213,6 +213,54 @@
             font-style: italic;
         }
 
+        /* Sponsor Carousel */
+        .sponsors-section {
+            margin: 60px auto 60px;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        .sponsors-title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 40px;
+            letter-spacing: 0.5px;
+        }
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding: 20px 0;
+        }
+        .carousel-track {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            gap: 50px;
+        }
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+        .sponsor-logo {
+            flex-shrink: 0;
+            height: 60px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
+            filter: brightness(0.9) grayscale(0.2);
+            transition: all .3s ease;
+            opacity: 0.85;
+        }
+        .sponsor-logo:hover {
+            filter: brightness(1.1) grayscale(0);
+            opacity: 1;
+            transform: scale(1.08);
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         /* Trouble Section */
         .trouble-section {
             background: #3a3a3a;
@@ -436,6 +484,15 @@
             .powered-by-text {
                 text-align: center;
             }
+
+            .sponsor-logo {
+                height: 50px;
+                max-width: 150px;
+            }
+
+            .carousel-track {
+                gap: 40px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -449,6 +506,15 @@
 
             .main-content {
                 padding: 40px 20px;
+            }
+
+            .sponsor-logo {
+                height: 45px;
+                max-width: 130px;
+            }
+
+            .carousel-track {
+                gap: 30px;
             }
         }
     </style>
@@ -506,6 +572,42 @@
             <div class="brand-item">
                 <img src="assets/images/gofan-logo-white.png" alt="GoFan">
                 <p>- Secure, Private Livestreaming.</p>
+            </div>
+        </div>
+
+        <!-- Sponsor Carousel Section -->
+        <div class="sponsors-section">
+            <h3 class="sponsors-title">Made Possible By</h3>
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <img src="assets/brand images/jackrabbit.png" alt="Jackrabbit" class="sponsor-logo">
+                    <img src="assets/brand images/obs.png" alt="OBS" class="sponsor-logo">
+                    <img src="assets/brand images/playon.png" alt="PlayOn" class="sponsor-logo">
+                    <img src="assets/brand images/salesforce.png" alt="Salesforce" class="sponsor-logo">
+                    <img src="assets/brand images/stripe.png" alt="Stripe" class="sponsor-logo">
+                    <img src="assets/brand images/verizon.png" alt="Verizon" class="sponsor-logo">
+                    <img src="assets/brand images/vmwarevsphere.png" alt="VMware vSphere" class="sponsor-logo">
+                    <img src="assets/brand images/observium.png" alt="Observium" class="sponsor-logo">
+                    <img src="assets/brand images/adsense.png" alt="AdSense" class="sponsor-logo">
+                    <img src="assets/brand images/cloudflair.png" alt="Cloudflare" class="sponsor-logo">
+                    <img src="assets/brand images/conterra.png" alt="Conterra" class="sponsor-logo">
+                    <img src="assets/brand images/go.png" alt="Go" class="sponsor-logo">
+                    <img src="assets/brand images/gofanbanner.png" alt="GoFan" class="sponsor-logo">
+                    <!-- Duplicate set for seamless loop -->
+                    <img src="assets/brand images/jackrabbit.png" alt="Jackrabbit" class="sponsor-logo">
+                    <img src="assets/brand images/obs.png" alt="OBS" class="sponsor-logo">
+                    <img src="assets/brand images/playon.png" alt="PlayOn" class="sponsor-logo">
+                    <img src="assets/brand images/salesforce.png" alt="Salesforce" class="sponsor-logo">
+                    <img src="assets/brand images/stripe.png" alt="Stripe" class="sponsor-logo">
+                    <img src="assets/brand images/verizon.png" alt="Verizon" class="sponsor-logo">
+                    <img src="assets/brand images/vmwarevsphere.png" alt="VMware vSphere" class="sponsor-logo">
+                    <img src="assets/brand images/observium.png" alt="Observium" class="sponsor-logo">
+                    <img src="assets/brand images/adsense.png" alt="AdSense" class="sponsor-logo">
+                    <img src="assets/brand images/cloudflair.png" alt="Cloudflare" class="sponsor-logo">
+                    <img src="assets/brand images/conterra.png" alt="Conterra" class="sponsor-logo">
+                    <img src="assets/brand images/go.png" alt="Go" class="sponsor-logo">
+                    <img src="assets/brand images/gofanbanner.png" alt="GoFan" class="sponsor-logo">
+                </div>
             </div>
         </div>
     </div>
