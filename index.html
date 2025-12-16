@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#4a4a4a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>BadWolfie.live - GoFan</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <meta name="description" content="Login to access BadWolfie's Community via GoFan">
@@ -14,12 +17,42 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
         body {
             font-family: Arial, sans-serif;
             background: #f5f5f5;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
+            touch-action: manipulation;
+        }
+
+        /* Reduce motion support for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Better touch targets for mobile */
+        @media (hover: none) and (pointer: coarse) {
+            button, a, input, .trouble-section h3 {
+                min-height: 44px;
+                min-width: 44px;
+            }
         }
 
         /* Header Section */
@@ -70,38 +103,59 @@
             margin-left: auto;
             margin-right: auto;
             display: block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: border-color, box-shadow;
         }
 
         .login-container input:focus {
             border-color: #007bff;
             outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
         }
 
         .login-container a {
             font-size: 14px;
             color: #007bff;
             text-decoration: none;
+            transition: color 0.2s ease;
         }
 
         .login-container a:hover {
             text-decoration: underline;
+            color: #0056b3;
         }
 
         .login-container button {
             width: 100%;
             padding: 10px;
-            margin-top: 10px; /* Adjusted space */
+            margin-top: 10px;
             background-color: #ccc;
             border: none;
             border-radius: 4px;
             font-size: 16px;
-            cursor: not-allowed; /* Default cursor */
+            cursor: not-allowed;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            will-change: transform, background-color, box-shadow;
         }
 
         .login-container button:enabled {
             background-color: #007bff;
             color: #fff;
-            cursor: pointer; /* Pointer cursor when enabled */
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+        }
+
+        .login-container button:enabled:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px) translateZ(0);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .login-container button:enabled:active {
+            transform: translateY(0) translateZ(0);
+            box-shadow: 0 1px 2px rgba(0, 123, 255, 0.2);
         }
 
         .login-container a.forgot-password {
@@ -213,52 +267,122 @@
             font-style: italic;
         }
 
-        /* Sponsor Carousel */
+        /* Slot Machine Style - Logos Flip in Place */
         .sponsors-section {
             margin: 60px auto 60px;
-            max-width: 1200px;
-            padding: 0 20px;
+            max-width: 100%;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            -webkit-overflow-scrolling: touch;
         }
         .sponsors-title {
             text-align: center;
-            font-weight: 700;
-            font-size: 24px;
-            color: #ffffff;
-            margin-bottom: 40px;
+            font-weight: 600;
+            font-size: 18px;
+            color: #cccccc;
+            margin-bottom: 35px;
             letter-spacing: 0.5px;
         }
-        .carousel-container {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            padding: 20px 0;
-        }
-        .carousel-track {
+        .sponsors-grid {
             display: flex;
-            animation: scroll 30s linear infinite;
-            gap: 50px;
+            gap: 0;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
-        .carousel-track:hover {
-            animation-play-state: paused;
+        .logo-slot {
+            flex: 1 1 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 100px;
+            padding: 25px 20px;
+            transform: translateZ(0);
         }
-        .sponsor-logo {
-            flex-shrink: 0;
-            height: 60px;
+        .logo-slot img {
+            max-width: 140px;
+            max-height: 55px;
             width: auto;
-            max-width: 180px;
+            height: auto;
             object-fit: contain;
+            position: absolute;
             filter: brightness(0.9) grayscale(0.2);
-            transition: all .3s ease;
-            opacity: 0.85;
+            transition: filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, opacity, filter;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
-        .sponsor-logo:hover {
+        .logo-slot:hover img {
             filter: brightness(1.1) grayscale(0);
-            opacity: 1;
-            transform: scale(1.08);
         }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .slot-divider {
+            width: 1px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
+            transform: translateZ(0);
+        }
+        /* Logo flip animation - optimized for 60fps */
+        @keyframes logoFlip {
+            0% {
+                transform: scale(1) rotateY(0deg) translateZ(0);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(0.8) rotateY(90deg) translateZ(0);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1) rotateY(0deg) translateZ(0);
+                opacity: 1;
+            }
+        }
+        .animate-logoFlip {
+            animation: logoFlip 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .slot-divider.animate-logoFlip {
+            animation: none;
+        }
+        @media (max-width: 960px) {
+            .sponsors-grid {
+                flex-wrap: wrap;
+            }
+            .logo-slot {
+                flex-basis: calc(33.333% - 1px);
+                padding: 20px 15px;
+            }
+            .logo-slot img {
+                max-width: 120px;
+                max-height: 45px;
+            }
+            .slot-divider {
+                height: 48px;
+            }
+            .slot-divider:nth-child(6n+6), 
+            .slot-divider:last-child {
+                display: none;
+            }
+        }
+        @media (max-width: 640px) {
+            .logo-slot {
+                flex-basis: calc(50% - 0.5px);
+                padding: 20px 15px;
+            }
+            .logo-slot img {
+                max-width: 110px;
+                max-height: 40px;
+            }
+            .slot-divider {
+                height: 40px;
+            }
+            .slot-divider:nth-child(4n+4),
+            .slot-divider:last-child {
+                display: none;
+            }
         }
 
         /* Trouble Section */
@@ -288,7 +412,8 @@
         .trouble-section h3::after {
             content: '▼';
             font-size: 20px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
         }
 
         .trouble-section h3.collapsed::after {
@@ -298,8 +423,10 @@
         .trouble-content {
             max-height: 5000px;
             overflow: hidden;
-            transition: max-height 0.5s ease, opacity 0.5s ease;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 1;
+            will-change: max-height, opacity;
         }
 
         .trouble-content.hidden {
@@ -484,15 +611,6 @@
             .powered-by-text {
                 text-align: center;
             }
-
-            .sponsor-logo {
-                height: 50px;
-                max-width: 150px;
-            }
-
-            .carousel-track {
-                gap: 40px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -506,15 +624,6 @@
 
             .main-content {
                 padding: 40px 20px;
-            }
-
-            .sponsor-logo {
-                height: 45px;
-                max-width: 130px;
-            }
-
-            .carousel-track {
-                gap: 30px;
             }
         }
     </style>
@@ -575,41 +684,124 @@
             </div>
         </div>
 
-        <!-- Sponsor Carousel Section -->
+        <!-- Slot Machine Carousel Section -->
         <div class="sponsors-section">
-            <h3 class="sponsors-title">Made Possible By</h3>
-            <div class="carousel-container">
-                <div class="carousel-track" id="carouselTrack">
-                    <img src="assets/brand images/jackrabbit.png" alt="Jackrabbit" class="sponsor-logo">
-                    <img src="assets/brand images/obs.png" alt="OBS" class="sponsor-logo">
-                    <img src="assets/brand images/playon.png" alt="PlayOn" class="sponsor-logo">
-                    <img src="assets/brand images/salesforce.png" alt="Salesforce" class="sponsor-logo">
-                    <img src="assets/brand images/stripe.png" alt="Stripe" class="sponsor-logo">
-                    <img src="assets/brand images/verizon.png" alt="Verizon" class="sponsor-logo">
-                    <img src="assets/brand images/vmwarevsphere.png" alt="VMware vSphere" class="sponsor-logo">
-                    <img src="assets/brand images/observium.png" alt="Observium" class="sponsor-logo">
-                    <img src="assets/brand images/adsense.png" alt="AdSense" class="sponsor-logo">
-                    <img src="assets/brand images/cloudflair.png" alt="Cloudflare" class="sponsor-logo">
-                    <img src="assets/brand images/conterra.png" alt="Conterra" class="sponsor-logo">
-                    <img src="assets/brand images/go.png" alt="Go" class="sponsor-logo">
-                    <img src="assets/brand images/gofanbanner.png" alt="GoFan" class="sponsor-logo">
-                    <!-- Duplicate set for seamless loop -->
-                    <img src="assets/brand images/jackrabbit.png" alt="Jackrabbit" class="sponsor-logo">
-                    <img src="assets/brand images/obs.png" alt="OBS" class="sponsor-logo">
-                    <img src="assets/brand images/playon.png" alt="PlayOn" class="sponsor-logo">
-                    <img src="assets/brand images/salesforce.png" alt="Salesforce" class="sponsor-logo">
-                    <img src="assets/brand images/stripe.png" alt="Stripe" class="sponsor-logo">
-                    <img src="assets/brand images/verizon.png" alt="Verizon" class="sponsor-logo">
-                    <img src="assets/brand images/vmwarevsphere.png" alt="VMware vSphere" class="sponsor-logo">
-                    <img src="assets/brand images/observium.png" alt="Observium" class="sponsor-logo">
-                    <img src="assets/brand images/adsense.png" alt="AdSense" class="sponsor-logo">
-                    <img src="assets/brand images/cloudflair.png" alt="Cloudflare" class="sponsor-logo">
-                    <img src="assets/brand images/conterra.png" alt="Conterra" class="sponsor-logo">
-                    <img src="assets/brand images/go.png" alt="Go" class="sponsor-logo">
-                    <img src="assets/brand images/gofanbanner.png" alt="GoFan" class="sponsor-logo">
+            <h3 class="sponsors-title">Built using modern, trusted web technologies</h3>
+            <div class="sponsors-grid">
+                <div class="logo-slot" data-slot="0">
+                    <img src="assets/brand images/conterra.png" alt="Conterra" class="logo-image">
+                </div>
+                <div class="slot-divider"></div>
+                <div class="logo-slot" data-slot="1">
+                    <img src="assets/brand images/gofanbanner.png" alt="GoFan" class="logo-image">
+                </div>
+                <div class="slot-divider"></div>
+                <div class="logo-slot" data-slot="2">
+                    <img src="assets/brand images/obs.png" alt="OBS" class="logo-image">
+                </div>
+                <div class="slot-divider"></div>
+                <div class="logo-slot" data-slot="3">
+                    <img src="assets/brand images/observium.png" alt="Observium" class="logo-image">
+                </div>
+                <div class="slot-divider"></div>
+                <div class="logo-slot" data-slot="4">
+                    <img src="assets/brand images/persona.png" alt="Persona" class="logo-image">
+                </div>
+                <div class="slot-divider"></div>
+                <div class="logo-slot" data-slot="5">
+                    <img src="assets/brand images/playon.png" alt="PlayOn" class="logo-image">
                 </div>
             </div>
+
+            <!-- Hidden list of all available logos -->
+            <div class="hidden all-available-logos" style="display: none;">
+                <div data-index="0" data-alt="Conterra" data-src="assets/brand images/conterra.png"></div>
+                <div data-index="1" data-alt="GoFan" data-src="assets/brand images/gofanbanner.png"></div>
+                <div data-index="2" data-alt="OBS" data-src="assets/brand images/obs.png"></div>
+                <div data-index="3" data-alt="Observium" data-src="assets/brand images/observium.png"></div>
+                <div data-index="4" data-alt="Persona" data-src="assets/brand images/persona.png"></div>
+                <div data-index="5" data-alt="PlayOn" data-src="assets/brand images/playon.png"></div>
+                <div data-index="6" data-alt="Salesforce" data-src="assets/brand images/salesforce.png"></div>
+                <div data-index="7" data-alt="Stripe" data-src="assets/brand images/stripe.png"></div>
+                <div data-index="8" data-alt="Verizon" data-src="assets/brand images/verizon.png"></div>
+                <div data-index="9" data-alt="VMware vSphere" data-src="assets/brand images/vmwarevsphere.png"></div>
+                <div data-index="10" data-alt="AdSense" data-src="assets/brand images/adsense.png"></div>
+                <div data-index="11" data-alt="Cloudflare" data-src="assets/brand images/cloudflair.png"></div>
+            </div>
         </div>
+
+        <script>
+        // Slot machine logo rotation - optimized for 60fps
+        (function() {
+            const logoImages = document.querySelectorAll('.logo-image');
+            const allLogos = [];
+            
+            // Build array of all available logos
+            document.querySelectorAll('.all-available-logos div').forEach(el => {
+                allLogos.push({
+                    src: el.getAttribute('data-src'),
+                    alt: el.getAttribute('data-alt')
+                });
+            });
+
+            const getVisibleSlots = () => {
+                const width = window.innerWidth;
+                if (width >= 960) return 6;
+                if (width >= 640) return 3;
+                return 2;
+            };
+
+            let currentIndex = getVisibleSlots();
+            const totalLogos = allLogos.length;
+            let lastRotationTime = Date.now();
+            const rotationInterval = 5000; // 5 seconds
+
+            // Use requestAnimationFrame for smooth animations
+            function animateLogos() {
+                const now = Date.now();
+                
+                if (now - lastRotationTime >= rotationInterval) {
+                    lastRotationTime = now;
+                    
+                    let delay = 0;
+                    const delayIncrement = 300;
+                    const visibleCount = getVisibleSlots();
+
+                    // Flip each visible logo with staggered timing
+                    Array.from(logoImages).slice(0, visibleCount).forEach((img, index) => {
+                        setTimeout(() => {
+                            requestAnimationFrame(() => {
+                                // Remove animation class
+                                img.classList.remove('animate-logoFlip');
+                                
+                                // Force reflow
+                                void img.offsetWidth;
+                                
+                                // Update src and alt
+                                img.src = allLogos[currentIndex].src;
+                                img.alt = allLogos[currentIndex].alt;
+                                
+                                // Add animation class
+                                requestAnimationFrame(() => {
+                                    img.classList.add('animate-logoFlip');
+                                });
+                                
+                                // Move to next logo
+                                currentIndex = (currentIndex + 1) % totalLogos;
+                            });
+                        }, delay);
+                        
+                        delay += delayIncrement;
+                    });
+                }
+                
+                requestAnimationFrame(animateLogos);
+            }
+            
+            // Start animation loop
+            requestAnimationFrame(animateLogos);
+        })();
+        </script>
     </div>
 
     <!-- Trouble/Support Section -->
