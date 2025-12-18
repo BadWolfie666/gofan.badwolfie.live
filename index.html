@@ -282,6 +282,15 @@
             color: #cccccc;
             margin-bottom: 35px;
             letter-spacing: 0.5px;
+            line-height: 1.4;
+            padding: 0 10px;
+        }
+        
+        @media (max-width: 640px) {
+            .sponsors-title {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
         }
         .sponsors-grid {
             display: flex;
@@ -349,10 +358,15 @@
         }
         @media (max-width: 960px) {
             .sponsors-grid {
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
+                justify-content: center;
+            }
+            /* Hide slots 3-6 and their dividers on tablet */
+            .logo-slot:nth-child(n+7),
+            .slot-divider:nth-child(n+6) {
+                display: none;
             }
             .logo-slot {
-                flex-basis: calc(33.333% - 1px);
                 padding: 20px 15px;
             }
             .logo-slot img {
@@ -362,15 +376,25 @@
             .slot-divider {
                 height: 48px;
             }
-            .slot-divider:nth-child(6n+6), 
-            .slot-divider:last-child {
-                display: none;
-            }
         }
         @media (max-width: 640px) {
+            .sponsors-section {
+                padding: 40px 15px;
+            }
+            .sponsors-grid {
+                flex-wrap: nowrap;
+                justify-content: center;
+                gap: 0;
+            }
+            /* Show ONLY first 2 logos and 1 divider on mobile */
+            .logo-slot:nth-child(n+5),
+            .slot-divider:nth-child(n+4) {
+                display: none !important;
+            }
             .logo-slot {
-                flex-basis: calc(50% - 0.5px);
+                flex: 1 1 0;
                 padding: 20px 15px;
+                min-width: 0;
             }
             .logo-slot img {
                 max-width: 110px;
@@ -378,10 +402,11 @@
             }
             .slot-divider {
                 height: 40px;
+                display: flex !important;
             }
-            .slot-divider:nth-child(4n+4),
-            .slot-divider:last-child {
-                display: none;
+            /* Ensure exactly 2 logos show */
+            .slot-divider:nth-child(3) {
+                display: flex !important;
             }
         }
 
@@ -688,6 +713,7 @@
         <div class="sponsors-section">
             <h3 class="sponsors-title">Built using modern, trusted web technologies</h3>
             <div class="sponsors-grid">
+                <!-- Mobile shows only slots 1-2, Tablet shows 1-3, Desktop shows all 6 -->
                 <div class="logo-slot" data-slot="0">
                     <img src="assets/brand images/conterra.png" alt="Conterra" class="logo-image">
                 </div>
